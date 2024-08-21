@@ -1,6 +1,6 @@
 import 'package:crmo/logic/blocs/auth/auth_bloc.dart';
-import 'package:crmo/ui/screens/home_screen.dart';
-import 'package:crmo/ui/screens/sign_up_pro_screen.dart';
+import 'package:crmo/ui/screens/bottom_nav_bar.dart';
+import 'package:crmo/ui/screens/auth_screens/sign_up_pro_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,7 +43,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const HomeScreen();
+                        return  BottomNavBar();
                       },
                     ),
                   );

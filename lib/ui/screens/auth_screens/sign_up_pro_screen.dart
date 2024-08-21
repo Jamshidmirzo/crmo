@@ -1,7 +1,7 @@
 import 'package:crmo/data/models/register_request.dart';
 import 'package:crmo/logic/blocs/auth/auth_bloc.dart';
-import 'package:crmo/ui/screens/home_screen.dart';
-import 'package:crmo/ui/screens/sign_up_screen.dart';
+import 'package:crmo/ui/screens/bottom_nav_bar.dart';
+import 'package:crmo/ui/screens/auth_screens/sign_up_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,15 +22,33 @@ class _SignUpProScreenState extends State<SignUpProScreen> {
   final passconfirmcontroller = TextEditingController();
   final passcontroller = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  String? _dropDownItem;
 
   submit() {
     if (_formKey.currentState!.validate()) {
-      context.read<AuthBloc>().add(RegisterEvent(
-          request: RegisterRequest(
-              name: namecontroller.text,
-              phone: phonecontroller.text,
-              password: passcontroller.text,
-              password_confirmation: passconfirmcontroller.text)));
+      if (_dropDownItem != null) {
+        print(_dropDownItem);
+        context.read<AuthBloc>().add(
+              RegisterEvent(
+                request: RegisterRequest(
+                  name: namecontroller.text,
+                  phone: phonecontroller.text,
+                  password: passcontroller.text,
+                  password_confirmation: passconfirmcontroller.text,
+                  role_id: int.parse(_dropDownItem!),
+                ),
+              ),
+            );
+      }
+      context.read<AuthBloc>().add(
+            RegisterEvent(
+              request: RegisterRequest(
+                  name: namecontroller.text,
+                  phone: phonecontroller.text,
+                  password: passcontroller.text,
+                  password_confirmation: passconfirmcontroller.text),
+            ),
+          );
     }
   }
 
@@ -45,7 +63,7 @@ class _SignUpProScreenState extends State<SignUpProScreen> {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return const HomeScreen();
+                  return BottomNavBar();
                 },
               ),
             );
@@ -138,6 +156,33 @@ class _SignUpProScreenState extends State<SignUpProScreen> {
                                   return null;
                                 },
                                 decoration: InputDecoration(
+                                  prefixIcon: Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: DropdownButtonHideUnderline(
+                                      child: DropdownButton<String>(
+                                        value: _dropDownItem,
+                                        items: const [
+                                          DropdownMenuItem(
+                                            value: '1',
+                                            child: Text('1'),
+                                          ),
+                                          DropdownMenuItem(
+                                            value: '2',
+                                            child: Text('2'),
+                                          ),
+                                          DropdownMenuItem(
+                                            value: '3',
+                                            child: Text('3'),
+                                          ),
+                                        ],
+                                        onChanged: (value) {
+                                          _dropDownItem = value;
+                                          setState(() {});
+                                        },
+                                        hint: const Text('Select'),
+                                      ),
+                                    ),
+                                  ),
                                   hintText: 'Opercoder',
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20),

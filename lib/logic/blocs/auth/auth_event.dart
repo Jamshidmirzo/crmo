@@ -13,7 +13,7 @@ class LoginEvent extends AuthEvent {
   LoginEvent({required this.email, required this.password});
 }
 
-class LogoutEvent extends AuthEvent {
-  final String accessToken;
-  LogoutEvent({required this.accessToken});
-}
+class LogoutEvent extends AuthEvent {}
+
+
+class CheckUserEvent extends AuthEvent {}

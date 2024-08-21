@@ -31,6 +31,8 @@ class AuthService {
   }
 
   Future<void> signOut(String accessToken) async {
+    print('TOKEN');
+    print(accessToken);
     try {
       final String url = '$baseUrl/logout';
       final response = await dio.post(
@@ -41,14 +43,12 @@ class AuthService {
           },
         ),
       );
-      if (response.statusCode != 200) {
-        throw Exception('Failed request: ${response.statusCode}');
-      }
 
-      final shared = await SharedPreferences.getInstance();
-      await shared.clear();
+      if (response.statusCode != 200) {
+        throw Exception('Failed logout request: ${response.statusCode}');
+      }
     } catch (e) {
-      rethrow; 
+      throw Exception('Error during logout: $e');
     }
   }
 

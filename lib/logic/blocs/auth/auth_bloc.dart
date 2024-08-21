@@ -13,6 +13,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LoginEvent>(_login);
     on<RegisterEvent>(_register);
     on<LogoutEvent>(_logout);
+    on<CheckUserEvent>(_checkUser);
   }
 
   Future<void> _login(LoginEvent event, Emitter<AuthState> emit) async {
@@ -41,14 +42,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> _logout(LogoutEvent event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     try {
-      await authService.signOut(event.accessToken);
+      final shared = await SharedPreferences.getInstance();
+      final accessToken = shared.getString('token');
+
+      if (accessToken == null) {
+        emit(AuthError('No access token found. Unable to logout.'));
+        return;
+      }
+      await authService.signOut(accessToken);
+      await shared.clear();
       emit(UnauthenticatedState());
     } catch (e) {
-      emit(AuthError(e.toString()));
+      emit(AuthError('Logout failed: $e'));
     }
   }
 
-  Future<void> checkUser() async {
+  Future<void> _checkUser(event, emit) async {
     emit(AuthLoading());
     try {
       final shared = await SharedPreferences.getInstance();
@@ -58,6 +67,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       } else {
         emit(UnauthenticatedState());
       }
-    } catch (e) {}
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
   }
 }

@@ -8,11 +8,13 @@ class RegisterRequest {
   final String phone;
   final String password;
   final String password_confirmation;
+  int? role_id;
   RegisterRequest({
     required this.name,
     required this.phone,
     required this.password,
     required this.password_confirmation,
+    this.role_id,
   });
 
   RegisterRequest copyWith({
@@ -20,6 +22,7 @@ class RegisterRequest {
     String? phone,
     String? password,
     String? password_confirmation,
+    int? role_id,
   }) {
     return RegisterRequest(
       name: name ?? this.name,
@@ -27,6 +30,7 @@ class RegisterRequest {
       password: password ?? this.password,
       password_confirmation:
           password_confirmation ?? this.password_confirmation,
+      role_id: role_id ?? this.role_id,
     );
   }
 
@@ -36,6 +40,7 @@ class RegisterRequest {
       'phone': phone,
       'password': password,
       'password_confirmation': password_confirmation,
+      'role_id': role_id,
     };
   }
 
@@ -45,6 +50,7 @@ class RegisterRequest {
       phone: map['phone'] as String,
       password: map['password'] as String,
       password_confirmation: map['password_confirmation'] as String,
+      role_id: map['role_id'] != null ? map['role_id'] as int : null,
     );
   }
 
@@ -55,7 +61,7 @@ class RegisterRequest {
 
   @override
   String toString() {
-    return 'RegisterRequest(name: $name, phone: $phone, password: $password, password_confirmation: $password_confirmation)';
+    return 'RegisterRequest(name: $name, phone: $phone, password: $password, password_confirmation: $password_confirmation, role_id: $role_id)';
   }
 
   @override
@@ -65,7 +71,8 @@ class RegisterRequest {
     return other.name == name &&
         other.phone == phone &&
         other.password == password &&
-        other.password_confirmation == password_confirmation;
+        other.password_confirmation == password_confirmation &&
+        other.role_id == role_id;
   }
 
   @override
@@ -73,6 +80,7 @@ class RegisterRequest {
     return name.hashCode ^
         phone.hashCode ^
         password.hashCode ^
-        password_confirmation.hashCode;
+        password_confirmation.hashCode ^
+        role_id.hashCode;
   }
 }
