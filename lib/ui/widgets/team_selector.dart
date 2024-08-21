@@ -1,5 +1,8 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
+// ignore: use_key_in_widget_constructors
 class TeamSizeSelector extends StatefulWidget {
   @override
   _TeamSizeSelectorState createState() => _TeamSizeSelectorState();
@@ -23,13 +26,13 @@ class _TeamSizeSelectorState extends State<TeamSizeSelector> {
   Widget build(BuildContext context) {
     return GridView.builder(
       itemCount: options.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         childAspectRatio: 2.5,
       ),
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {

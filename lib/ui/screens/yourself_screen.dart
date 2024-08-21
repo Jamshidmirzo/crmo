@@ -1,7 +1,5 @@
 import 'package:crmo/ui/screens/company_screen.dart';
-import 'package:crmo/ui/screens/sign_up_screen.dart';
 import 'package:crmo/ui/widgets/yes_or_no_buttons.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -122,7 +120,7 @@ class _YourselfScreenState extends State<YourselfScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -132,6 +130,7 @@ class _YourselfScreenState extends State<YourselfScreen> {
                         fontSize: 14,
                       ),
                     ),
+                    // ignore: prefer_const_constructors
                     YesNoRadioButtons(),
                     const SizedBox(
                       height: 20,
@@ -145,7 +144,7 @@ class _YourselfScreenState extends State<YourselfScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return CompanyScreen();
+                                  return const CompanyScreen();
                                 },
                               ),
                             );

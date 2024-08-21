@@ -240,6 +240,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
+                                      // ignore: prefer_const_constructors
                                       return YourselfScreen();
                                     },
                                   ),

@@ -1,7 +1,4 @@
-import 'package:crmo/ui/screens/sign_up_screen.dart';
 import 'package:crmo/ui/widgets/team_selector.dart';
-import 'package:crmo/ui/widgets/yes_or_no_buttons.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -119,7 +116,7 @@ class _CompanyScreenState extends State<CompanyScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Expanded(flex: 4, child: TeamSizeSelector()),
@@ -135,7 +132,7 @@ class _CompanyScreenState extends State<CompanyScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return CompanyScreen();
+                                  return const CompanyScreen();
                                 },
                               ),
                             );

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class YesNoRadioButtons extends StatefulWidget {
+  const YesNoRadioButtons({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _YesNoRadioButtonsState createState() => _YesNoRadioButtonsState();
 }
 
@@ -24,10 +27,10 @@ class _YesNoRadioButtonsState extends State<YesNoRadioButtons> {
                 });
               },
             ),
-            Text('Yes'),
+            const Text('Yes'),
           ],
         ),
-        SizedBox(width: 20),
+        const SizedBox(width: 20),
         Row(
           children: [
             Radio<String>(
@@ -39,7 +42,7 @@ class _YesNoRadioButtonsState extends State<YesNoRadioButtons> {
                 });
               },
             ),
-            Text('No'),
+            const Text('No'),
           ],
         ),
       ],

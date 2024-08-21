@@ -19,7 +19,7 @@ class _SignUpProScreenState extends State<SignUpProScreen> {
   bool cheched = false;
   final namecontroller = TextEditingController();
   final phonecontroller = TextEditingController();
-  final phoneconfirmcontroller = TextEditingController();
+  final passconfirmcontroller = TextEditingController();
   final passcontroller = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
@@ -30,7 +30,7 @@ class _SignUpProScreenState extends State<SignUpProScreen> {
               name: namecontroller.text,
               phone: phonecontroller.text,
               password: passcontroller.text,
-              password_confirmation: phoneconfirmcontroller.text)));
+              password_confirmation: passconfirmcontroller.text)));
     }
   }
 
@@ -45,7 +45,7 @@ class _SignUpProScreenState extends State<SignUpProScreen> {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return HomeScreen();
+                  return const HomeScreen();
                 },
               ),
             );
@@ -62,6 +62,11 @@ class _SignUpProScreenState extends State<SignUpProScreen> {
           }
         },
         builder: (context, state) {
+          if (state is AuthLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
           return SingleChildScrollView(
             child: SafeArea(
               child: Padding(
@@ -169,39 +174,6 @@ class _SignUpProScreenState extends State<SignUpProScreen> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                'phone number vlaidate',
-                                style: GoogleFonts.nunitoSans(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 14,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              TextFormField(
-                                controller: phoneconfirmcontroller,
-                                validator: (value) {
-                                  if (value == null ||
-                                      value.isEmpty ||
-                                      phonecontroller.text !=
-                                          phoneconfirmcontroller.text) {
-                                    return 'Input your phone correctly';
-                                  }
-                                  return null;
-                                },
-                                decoration: InputDecoration(
-                                  suffixIcon:
-                                      const Icon(CupertinoIcons.eye_slash),
-                                  hintText: '1234567890',
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                ),
-                              ),
                               Text(
                                 'Password',
                                 style: GoogleFonts.nunitoSans(
@@ -217,6 +189,39 @@ class _SignUpProScreenState extends State<SignUpProScreen> {
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Input your password';
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                  suffixIcon:
+                                      const Icon(CupertinoIcons.eye_slash),
+                                  hintText: '********',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                'Passswrod vlaidate',
+                                style: GoogleFonts.nunitoSans(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              TextFormField(
+                                controller: passconfirmcontroller,
+                                validator: (value) {
+                                  if (value == null ||
+                                      value.isEmpty ||
+                                      passcontroller.text !=
+                                          passconfirmcontroller.text) {
+                                    return 'Input your password correctly';
                                   }
                                   return null;
                                 },
