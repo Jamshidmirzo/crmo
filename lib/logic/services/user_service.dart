@@ -13,7 +13,6 @@ class UserService {
 
   Future<Map<String, dynamic>> getUser(String accessToken) async {
     try {
-      print(accessToken);
       final String url = '$baseUrl/user';
       final response = await dio.get(
         url,
@@ -63,6 +62,7 @@ class UserService {
         );
       }
 
+      // ignore: unused_local_variable
       final response = await dio.post(
         "http://millima.flutterwithakmaljon.uz/api/profile/update",
         data: formData,
@@ -73,12 +73,9 @@ class UserService {
         ),
       );
 
-      print("Profile updated: ${response.data}");
     } on DioException catch (error) {
-      print("Failed to update profile: ${error.response?.data}");
       throw error.message.toString();
     } catch (e) {
-      print("An error occurred: $e");
       rethrow;
     }
   }
@@ -103,14 +100,6 @@ class UserService {
     }
   }
 
-  Future<Map<String, dynamic>> _handleResponse(Response response) async {
-    final Map<String, dynamic> decoded = response.data;
-    if (response.statusCode != 200) {
-      throw Exception('Failed request: ${decoded['message']}');
-    }
-
-    return decoded;
-  }
 
   Future<StudentResponse> getStudents(String token) async {
     final url = '$baseUrl/users?role_id=1';

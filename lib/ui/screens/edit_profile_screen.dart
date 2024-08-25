@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:io';
 
 import 'package:crmo/logic/blocs/user/user_bloc.dart';
@@ -6,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
+// ignore: must_be_immutable
 class EditProfileScreen extends StatefulWidget {
   String name;
   String phone;

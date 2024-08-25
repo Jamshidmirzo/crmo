@@ -1,30 +1,32 @@
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 class GroupService {
   final String baseUrl = 'http://millima.flutterwithakmaljon.uz/api';
-  final Dio dio;
-
-  GroupService()
-      : dio = Dio() {
-    dio.interceptors.add(DioInterceptors());
-  }
-
-  Future<Map<String, dynamic>> getTeachers() async {
-    final url = '$baseUrl/users/role_id=2';
-    final response = await dio.get(url);
-    return _handleResponse(response);
-  }
-
-  Future<Map<String, dynamic>> _handleResponse(Response response) async {
-    final Map<String, dynamic> decoded = response.data;
-    if (response.statusCode != 200) {
-      throw Exception('Failed request: ${decoded['message']}');
-    }
-
-    return decoded;
+  final dio = Dio();
+  Future<void> addGroup(
+    String accessToken,
+    String name,
+    int mainTeacherId,
+    int assistantTeacherId,
+  ) async {
+    final url = '$baseUrl/groups';
+    // ignore: unused_local_variable
+    final responce = await dio.post(
+      url,
+      data: {
+        'name': name,
+        'main_teacher_id': mainTeacherId,
+        'assistant_teacher_id': assistantTeacherId
+      },
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $accessToken',
+        },
+      ),
+    );
   }
 }
-
 
 class DioInterceptors extends Interceptor {
   @override
@@ -33,7 +35,6 @@ class DioInterceptors extends Interceptor {
     final shared = await SharedPreferences.getInstance();
     final token = shared.getString('token');
 
-   
     if (token != null) {
       options.headers['Authorization'] = 'Bearer $token';
     }

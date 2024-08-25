@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return CreateAGroupScreen();
+                        return const CreateAGroupScreen();
                       },
                     ),
                   );
@@ -60,7 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
-          print(state);
           if (state is AuthLoading) {
             showDialog(
               context: context,

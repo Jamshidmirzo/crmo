@@ -29,8 +29,6 @@ class _TeachersTabState extends State<TeachersTab> {
         }
 
         if (state is UserGetTeacherState) {
-          print(state.info);
-
           return ListView.builder(
             itemCount: state.info.data.length, 
             itemBuilder: (context, index) {

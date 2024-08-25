@@ -4,14 +4,14 @@ import 'package:crmo/ui/screens/students_list_screen.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
-  BottomNavBar({super.key});
+  const BottomNavBar({super.key});
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  final List screens = [HomeScreen(), ProfileScreen(), StudentsListScreen()];
+  final List screens = [const HomeScreen(), const ProfileScreen(), const StudentsListScreen()];
 
   int _currentIncdex = 0;
 

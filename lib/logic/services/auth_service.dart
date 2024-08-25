@@ -31,8 +31,6 @@ class AuthService {
   }
 
   Future<void> signOut(String accessToken) async {
-    print('TOKEN');
-    print(accessToken);
     try {
       final String url = '$baseUrl/logout';
       final response = await dio.post(
@@ -66,6 +64,7 @@ class AuthService {
 class DioInterCeptors extends Interceptor {
   @override
   
+  // ignore: unnecessary_overrides
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     super.onRequest(options, handler);
   }

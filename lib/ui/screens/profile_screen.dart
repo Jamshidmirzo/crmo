@@ -38,7 +38,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Center(
                     child: ZoomTapAnimation(
                       onTap: () {
-                        print(state.info['data']['photo']);
                       },
                       child: CircleAvatar(
                         radius: 120,

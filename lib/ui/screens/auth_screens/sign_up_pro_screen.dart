@@ -27,7 +27,6 @@ class _SignUpProScreenState extends State<SignUpProScreen> {
   submit() {
     if (_formKey.currentState!.validate()) {
       if (_dropDownItem != null) {
-        print(_dropDownItem);
         context.read<AuthBloc>().add(
               RegisterEvent(
                 request: RegisterRequest(
@@ -63,7 +62,7 @@ class _SignUpProScreenState extends State<SignUpProScreen> {
               context,
               MaterialPageRoute(
                 builder: (context) {
-                  return BottomNavBar();
+                  return const BottomNavBar();
                 },
               ),
             );
