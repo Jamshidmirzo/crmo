@@ -1,3 +1,5 @@
+import 'package:crmo/ui/screens/students_tab.dart';
+import 'package:crmo/ui/screens/teachers_tab.dart';
 import 'package:flutter/material.dart';
 
 class StudentsListScreen extends StatelessWidget {
@@ -6,7 +8,7 @@ class StudentsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2, 
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Students and Teachers"),
@@ -24,28 +26,6 @@ class StudentsListScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class StudentsTab extends StatelessWidget {
-  const StudentsTab({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('List of Students'),
-    );
-  }
-}
-
-class TeachersTab extends StatelessWidget {
-  const TeachersTab({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('List of Teachers'),
     );
   }
 }

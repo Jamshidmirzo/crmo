@@ -65,7 +65,7 @@ class AuthService {
 
 class DioInterCeptors extends Interceptor {
   @override
-  // ignore: unnecessary_overrides
+  
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     super.onRequest(options, handler);
   }

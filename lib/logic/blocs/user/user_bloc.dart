@@ -12,6 +12,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc({required this.userService}) : super(UserInitial()) {
     on<GetUserEvent>(_getUser);
     on<UpdateInfoUserEvent>(_updateUserInfo);
+    on<GetTeacherEvent>(_getTeacher);
+    on<GetStundetsEvent>(_getStudents);
   }
 
   Future<void> _getUser(GetUserEvent event, Emitter<UserState> emit) async {
@@ -43,5 +45,54 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       name: event.name,
       photo: event.photo,
     );
+  }
+
+  Future<void> _getTeacher(
+      GetTeacherEvent event, Emitter<UserState> emit) async {
+    emit(UserLoadingState());
+    print('Loading teacher information...');
+
+    try {
+      final shared = await SharedPreferences.getInstance();
+      final token = shared.getString('token');
+      print('Token retrieved: $token');
+
+      
+      if (token == null) {
+        emit(UserErrorState(message: 'Token is missing.'));
+        return;
+      }
+
+      final teacherResponse = await userService.getTeachers(token);
+
+      emit(UserGetTeacherState(info: teacherResponse));
+    } catch (e) {
+      print('blocdsaaaa ushaaadinmmmm');
+      emit(UserErrorState(message: 'Failed to load user: $e'));
+    }
+  }
+
+  Future<void> _getStudents(
+      GetStundetsEvent event, Emitter<UserState> emit) async {
+    emit(UserLoadingState());
+    print('Loading teacher information...');
+
+    try {
+      final shared = await SharedPreferences.getInstance();
+      final token = shared.getString('token');
+      print('Token retrieved: $token');
+
+      // Check if token is available
+      if (token == null) {
+        emit(UserErrorState(message: 'Token is missing.'));
+        return;
+      }
+
+      final studentsResponse = await userService.getStudents(token);
+
+      emit(UserGetStudentsState(info: studentsResponse));
+    } catch (e) {
+      emit(UserErrorState(message: 'Failed to load user: $e'));
+    }
   }
 }

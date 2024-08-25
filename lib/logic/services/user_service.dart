@@ -1,6 +1,9 @@
 import 'dart:io';
 
+import 'package:crmo/data/models/role.dart';
+import 'package:crmo/data/models/teacher_responce.dart';
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserService {
   final String baseUrl = 'http://millima.flutterwithakmaljon.uz/api';
@@ -78,5 +81,74 @@ class UserService {
       print("An error occurred: $e");
       rethrow;
     }
+  }
+
+  Future<TeacherResponse> getTeachers(String accessToken) async {
+    final url = '$baseUrl/users?role_id=2';
+    try {
+      final response = await dio.get(
+        url,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $accessToken',
+          },
+        ),
+      );
+      if (response.statusCode != 200) {
+        throw Exception('Failed to fetch user: ${response.statusMessage}');
+      }
+      return TeacherResponse.fromJson(response.data);
+    } catch (e) {
+      throw Exception('Error during getUser: $e');
+    }
+  }
+
+  Future<Map<String, dynamic>> _handleResponse(Response response) async {
+    final Map<String, dynamic> decoded = response.data;
+    if (response.statusCode != 200) {
+      throw Exception('Failed request: ${decoded['message']}');
+    }
+
+    return decoded;
+  }
+
+  Future<StudentResponse> getStudents(String token) async {
+    final url = '$baseUrl/users?role_id=1';
+    final response = await dio.get(
+      url,
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
+    return StudentResponse.fromJson(response.data);
+  }
+}
+
+class DioInterceptors extends Interceptor {
+  @override
+  void onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
+    final shared = await SharedPreferences.getInstance();
+    final token = shared.getString('token');
+
+    if (token != null) {
+      options.headers['Authorization'] = 'Bearer $token';
+    }
+
+    // Continue the request
+    handler.next(options);
+  }
+
+  @override
+  void onResponse(Response response, ResponseInterceptorHandler handler) {
+    // Continue the response
+    handler.next(response);
+  }
+
+  @override
+  void onError(DioException err, ErrorInterceptorHandler handler) {
+    handler.next(err);
   }
 }
