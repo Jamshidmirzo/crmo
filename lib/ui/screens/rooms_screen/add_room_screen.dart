@@ -6,6 +6,7 @@ class AddRoomScreen extends StatefulWidget {
   const AddRoomScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _AddRoomScreenState createState() => _AddRoomScreenState();
 }
 
@@ -94,7 +95,7 @@ class _AddRoomScreenState extends State<AddRoomScreen> {
               Center(
                 child: ElevatedButton(
                   onPressed: () => submit(),
-                  child: Text("ADD"),
+                  child: const Text("ADD"),
                 ),
               ),
             ],

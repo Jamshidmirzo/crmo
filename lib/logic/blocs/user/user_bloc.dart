@@ -28,7 +28,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         emit(UserErrorState(message: 'Token is missing.'));
         return;
       }
-      print(token);
 
       final userInfo = await userService.getUser(token);
       emit(UserGetState(info: userInfo));

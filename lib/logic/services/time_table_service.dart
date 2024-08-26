@@ -5,14 +5,9 @@ class TimeTableService {
   final dio = Dio();
   Future<void> createTimeTable(int groupId, int roomId, int dayId,
       String startTime, String endTime, String token) async {
-    print(groupId);
-    print(roomId);
-    print(dayId);
-    print(startTime.runtimeType);
-    print(endTime);
     try {
       final url = '$baseUrl/group-classes';
-      final responce = await dio.post(
+      await dio.post(
         url,
         data: {
           "group_id": groupId,

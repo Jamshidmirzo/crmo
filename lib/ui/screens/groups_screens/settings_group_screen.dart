@@ -132,6 +132,7 @@ class _SettingsGroupScreenState extends State<SettingsGroupScreen> {
       },
     );
     if (response != null) {
+      // ignore: use_build_context_synchronously
       context.read<GroupBloc>().add(GroupAddedStudnetsEvent(
             students: students,
             groupId: widget.groups['id'],

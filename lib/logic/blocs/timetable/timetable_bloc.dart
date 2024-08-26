@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:crmo/data/models/time_table_request.dart';
 import 'package:crmo/logic/services/time_table_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

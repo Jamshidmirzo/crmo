@@ -1,6 +1,7 @@
 import 'package:crmo/logic/blocs/auth/auth_bloc.dart';
 import 'package:crmo/logic/blocs/group/group_bloc.dart';
 import 'package:crmo/logic/blocs/room/room_bloc.dart';
+import 'package:crmo/logic/blocs/subject/subject_bloc.dart';
 import 'package:crmo/logic/blocs/timetable/timetable_bloc.dart';
 import 'package:crmo/logic/blocs/user/user_bloc.dart';
 import 'package:crmo/logic/services/user_service.dart';
@@ -34,6 +35,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => TimetableBloc(),
+        ),
+        BlocProvider(
+          create: (context) => SubjectBloc(),
         ),
       ],
       child: const MaterialApp(

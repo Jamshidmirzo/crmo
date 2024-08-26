@@ -25,7 +25,6 @@ class _SignUpProScreenState extends State<SignUpProScreen> {
   String? _dropDownItem;
 
   submit() {
-    print(_dropDownItem);
     if (_formKey.currentState!.validate()) {
       if (_dropDownItem != null) {
         context.read<AuthBloc>().add(

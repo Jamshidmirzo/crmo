@@ -11,9 +11,6 @@ class GroupService {
     int assistantTeacherId,
   ) async {
     try {
-      print(name);
-      print(mainTeacherId);
-      print(assistantTeacherId);
       final url = '$baseUrl/groups';
       // ignore: unused_local_variable
       final responce = await dio.post(
@@ -31,7 +28,7 @@ class GroupService {
         ),
       );
     } catch (e) {
-      print(e.toString());
+      rethrow;
     }
   }
 

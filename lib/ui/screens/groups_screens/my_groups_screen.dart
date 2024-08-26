@@ -24,7 +24,7 @@ class _MyGroupsScreenState extends State<MyGroupsScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Group Students'),
+          title: const Text('Group Students'),
           content: SizedBox(
             height: 300, 
             width: double.maxFinite, 

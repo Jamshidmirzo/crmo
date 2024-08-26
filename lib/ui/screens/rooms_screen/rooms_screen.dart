@@ -38,7 +38,6 @@ class _RoomsScreenState extends State<RoomsScreen> {
       ),
       body: BlocBuilder<RoomBloc, RoomState>(
         builder: (context, state) {
-          print(state);
           if (state is RoomError) {
             return Center(
               child: Text(state.message),

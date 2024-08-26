@@ -1,4 +1,3 @@
-import 'package:crmo/data/models/time_table_request.dart';
 import 'package:crmo/logic/blocs/timetable/timetable_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

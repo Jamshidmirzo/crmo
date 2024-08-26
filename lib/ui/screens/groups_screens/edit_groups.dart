@@ -1,5 +1,4 @@
 import 'package:crmo/logic/blocs/group/group_bloc.dart';
-import 'package:crmo/ui/screens/groups_screens/settings_group_screen.dart';
 import 'package:crmo/ui/widgets/groups_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
