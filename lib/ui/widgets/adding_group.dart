@@ -53,7 +53,6 @@ class _AddingGroupState extends State<AddingGroup> {
       setState(() {
         _isLoading = false;
       });
-      // Handle exceptions
     }
   }
 
@@ -67,8 +66,8 @@ class _AddingGroupState extends State<AddingGroup> {
                   teacherId: _selectedTeacher!.id,
                   assitant_teacher_id: 4),
             );
-      } else {
-      }
+        Navigator.pop(context);
+      } else {}
     }
   }
 
@@ -126,6 +125,7 @@ class _AddingGroupState extends State<AddingGroup> {
           ),
         ),
       ),
+     
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),

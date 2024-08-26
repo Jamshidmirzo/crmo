@@ -15,3 +15,14 @@ class GroupAddEvent extends GroupEvent {
     required this.assitant_teacher_id,
   });
 }
+
+class GroupGetEvent extends GroupEvent {}
+
+class GroupAddedStudnetsEvent extends GroupEvent {
+  List students;
+  int groupId;
+  GroupAddedStudnetsEvent({
+    required this.students,
+    required this.groupId,
+  });
+}

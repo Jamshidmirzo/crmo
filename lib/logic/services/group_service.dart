@@ -26,6 +26,47 @@ class GroupService {
       ),
     );
   }
+
+  Future<Map<String, dynamic>> getGroups(
+    String accessToken,
+  ) async {
+    final url = '$baseUrl/groups';
+    final responce = await dio.get(
+      url,
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $accessToken',
+        },
+      ),
+    );
+    return responce.data;
+  }
+
+  Future<void> addStudents(
+      List students, int groupId, String accessToken) async {
+    try {
+      final url = '$baseUrl/groups/$groupId/students';
+      final response = await dio.post(
+        url,
+        data: {
+          'students': students,
+        },
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $accessToken',
+          },
+        ),
+      );
+
+      // Check if response status code is 200 (OK)
+      if (response.statusCode != 200) {
+        throw Exception('Failed to add students: ${response.statusCode}');
+      }
+    } catch (e) {
+
+      rethrow; 
+    }
+  }
 }
 
 class DioInterceptors extends Interceptor {

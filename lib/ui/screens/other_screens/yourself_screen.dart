@@ -1,4 +1,4 @@
-import 'package:crmo/ui/screens/company_screen.dart';
+import 'package:crmo/ui/screens/other_screens/company_screen.dart';
 import 'package:crmo/ui/widgets/yes_or_no_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -55,14 +55,14 @@ class _YourselfScreenState extends State<YourselfScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Center(
-                          child: Text(
-                            'Step 2/4',
-                            style: GoogleFonts.nunitoSans(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 18,
-                                color: Colors.blue),
-                          ),
-                        ),
+                      child: Text(
+                        'Step 2/4',
+                        style: GoogleFonts.nunitoSans(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18,
+                            color: Colors.blue),
+                      ),
+                    ),
                     Center(
                       child: Text(
                         'Tell about yourself',
@@ -130,8 +130,7 @@ class _YourselfScreenState extends State<YourselfScreen> {
                         fontSize: 14,
                       ),
                     ),
-                    // ignore: prefer_const_constructors
-                    YesNoRadioButtons(),
+                    const YesNoRadioButtons(),
                     const SizedBox(
                       height: 20,
                     ),

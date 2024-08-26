@@ -1,6 +1,6 @@
 import 'dart:io';
-
-import 'package:crmo/data/models/role.dart';
+import 'package:crmo/data/models/admin.dart';
+import 'package:crmo/data/models/student.dart';
 import 'package:crmo/data/models/teacher_responce.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -72,7 +72,6 @@ class UserService {
           },
         ),
       );
-
     } on DioException catch (error) {
       throw error.message.toString();
     } catch (e) {
@@ -100,7 +99,6 @@ class UserService {
     }
   }
 
-
   Future<StudentResponse> getStudents(String token) async {
     final url = '$baseUrl/users?role_id=1';
     final response = await dio.get(
@@ -112,6 +110,32 @@ class UserService {
       ),
     );
     return StudentResponse.fromJson(response.data);
+  }
+
+  Future<AdminResponse> getAdmins(String token) async {
+    final url = '$baseUrl/users?role_id=3';
+    final response = await dio.get(
+      url,
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
+    return AdminResponse.fromJson(response.data);
+  }
+
+  Future<Map<String, dynamic>> getMyGroups(String token) async {
+    final url = '$baseUrl/student/groups';
+    final response = await dio.get(
+      url,
+      options: Options(
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
+      ),
+    );
+    return response.data;
   }
 }
 

@@ -1,4 +1,4 @@
-import 'package:crmo/ui/screens/yourself_screen.dart';
+import 'package:crmo/ui/screens/other_screens/yourself_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

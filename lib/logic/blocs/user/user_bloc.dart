@@ -14,6 +14,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UpdateInfoUserEvent>(_updateUserInfo);
     on<GetTeacherEvent>(_getTeacher);
     on<GetStundetsEvent>(_getStudents);
+    on<GetAdminsEvent>(_getAdmins);
+    on<GetGroupsEvent>(_getGroups);
   }
 
   Future<void> _getUser(GetUserEvent event, Emitter<UserState> emit) async {
@@ -26,6 +28,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         emit(UserErrorState(message: 'Token is missing.'));
         return;
       }
+      print(token);
 
       final userInfo = await userService.getUser(token);
       emit(UserGetState(info: userInfo));
@@ -54,7 +57,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       final shared = await SharedPreferences.getInstance();
       final token = shared.getString('token');
 
-      
       if (token == null) {
         emit(UserErrorState(message: 'Token is missing.'));
         return;
@@ -85,6 +87,45 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       final studentsResponse = await userService.getStudents(token);
 
       emit(UserGetStudentsState(info: studentsResponse));
+    } catch (e) {
+      emit(UserErrorState(message: 'Failed to load user: $e'));
+    }
+  }
+
+  Future<void> _getAdmins(GetAdminsEvent event, Emitter<UserState> emit) async {
+    emit(UserLoadingState());
+
+    try {
+      final shared = await SharedPreferences.getInstance();
+      final token = shared.getString('token');
+
+      if (token == null) {
+        emit(UserErrorState(message: 'Token is missing.'));
+        return;
+      }
+
+      final admionsResponce = await userService.getAdmins(token);
+
+      emit(UserGetAdminsState(info: admionsResponce));
+    } catch (e) {
+      emit(UserErrorState(message: 'Failed to load user: $e'));
+    }
+  }
+
+  Future<void> _getGroups(GetGroupsEvent event, Emitter<UserState> emit) async {
+    emit(UserLoadingState());
+
+    try {
+      final shared = await SharedPreferences.getInstance();
+      final token = shared.getString('token');
+
+      if (token == null) {
+        emit(UserErrorState(message: 'Token is missing.'));
+        return;
+      }
+
+      final groupsResponce = await userService.getMyGroups(token);
+      emit(UserGetGroupsState(info: groupsResponce));
     } catch (e) {
       emit(UserErrorState(message: 'Failed to load user: $e'));
     }

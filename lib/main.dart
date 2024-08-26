@@ -2,7 +2,7 @@ import 'package:crmo/logic/blocs/auth/auth_bloc.dart';
 import 'package:crmo/logic/blocs/group/group_bloc.dart';
 import 'package:crmo/logic/blocs/user/user_bloc.dart';
 import 'package:crmo/logic/services/user_service.dart';
-import 'package:crmo/ui/screens/bottom_nav_bar.dart';
+import 'package:crmo/ui/screens/bottom_navigation_bar/bottom_nav_bar.dart';
 import 'package:crmo/ui/screens/auth_screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

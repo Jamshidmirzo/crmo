@@ -10,7 +10,7 @@ class Teacher {
   final DateTime createdAt;
   final DateTime updatedAt;
   final int roleId;
-  final Role role;
+  final Role? role; 
 
   Teacher({
     required this.id,
@@ -22,7 +22,7 @@ class Teacher {
     required this.createdAt,
     required this.updatedAt,
     required this.roleId,
-    required this.role,
+    this.role, 
   });
 
   factory Teacher.fromJson(Map<String, dynamic> json) {
@@ -38,7 +38,7 @@ class Teacher {
       createdAt: DateTime.parse(json['created_at']),
       updatedAt: DateTime.parse(json['updated_at']),
       roleId: json['role_id'],
-      role: Role.fromJson(json['role']),
+      role: json['role'] != null ? Role.fromJson(json['role']) : null, // Handle null role
     );
   }
 
@@ -53,7 +53,7 @@ class Teacher {
       'created_at': createdAt.toIso8601String(),
       'updated_at': updatedAt.toIso8601String(),
       'role_id': roleId,
-      'role': role.toJson(),
+      'role': role?.toJson(), 
     };
   }
 }

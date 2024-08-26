@@ -1,7 +1,7 @@
 import 'package:crmo/logic/blocs/user/user_bloc.dart';
 import 'package:crmo/logic/blocs/user/user_event.dart';
 import 'package:crmo/logic/blocs/user/user_state.dart';
-import 'package:crmo/ui/screens/edit_profile_screen.dart';
+import 'package:crmo/ui/screens/profile_screens/edit_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';

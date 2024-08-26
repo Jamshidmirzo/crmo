@@ -4,8 +4,14 @@ import 'dart:io';
 sealed class UserEvent {}
 
 class GetUserEvent extends UserEvent {}
+
 class GetTeacherEvent extends UserEvent {}
+
 class GetStundetsEvent extends UserEvent {}
+
+class GetAdminsEvent extends UserEvent {}
+class GetGroupsEvent extends UserEvent {}
+
 
 
 class UpdateInfoUserEvent extends UserEvent {
@@ -21,5 +27,3 @@ class UpdateInfoUserEvent extends UserEvent {
     this.photo,
   });
 }
-
-

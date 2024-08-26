@@ -1,6 +1,6 @@
 import 'package:crmo/data/models/register_request.dart';
 import 'package:crmo/logic/blocs/auth/auth_bloc.dart';
-import 'package:crmo/ui/screens/bottom_nav_bar.dart';
+import 'package:crmo/ui/screens/bottom_navigation_bar/bottom_nav_bar.dart';
 import 'package:crmo/ui/screens/auth_screens/sign_up_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +25,7 @@ class _SignUpProScreenState extends State<SignUpProScreen> {
   String? _dropDownItem;
 
   submit() {
+    print(_dropDownItem);
     if (_formKey.currentState!.validate()) {
       if (_dropDownItem != null) {
         context.read<AuthBloc>().add(

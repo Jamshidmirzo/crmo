@@ -1,6 +1,6 @@
-import 'package:crmo/ui/screens/home_screen.dart';
-import 'package:crmo/ui/screens/profile_screen.dart';
-import 'package:crmo/ui/screens/students_list_screen.dart';
+import 'package:crmo/ui/screens/other_screens/home_screen.dart';
+import 'package:crmo/ui/screens/profile_screens/profile_screen.dart';
+import 'package:crmo/ui/screens/tabs/students_list_screen.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
