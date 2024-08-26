@@ -3,6 +3,7 @@ import 'package:crmo/logic/blocs/group/group_bloc.dart';
 import 'package:crmo/logic/blocs/user/user_bloc.dart';
 import 'package:crmo/logic/blocs/user/user_event.dart';
 import 'package:crmo/logic/blocs/user/user_state.dart';
+import 'package:crmo/ui/screens/groups_screens/time_table_adding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -51,7 +52,6 @@ class _SettingsGroupScreenState extends State<SettingsGroupScreen> {
         if (state is UserGetTeacherState) {
           setState(() {
             _teachers = state.info.data;
-            // Retain the selected teacher after fetching the list
             _selectedTeacher = _teachers.firstWhere(
               (teacher) => teacher.name == widget.teacherName,
             );
@@ -133,9 +133,9 @@ class _SettingsGroupScreenState extends State<SettingsGroupScreen> {
     );
     if (response != null) {
       context.read<GroupBloc>().add(GroupAddedStudnetsEvent(
-        students: students,
-        groupId: widget.groups['id'],
-      ));
+            students: students,
+            groupId: widget.groups['id'],
+          ));
     }
   }
 
@@ -165,10 +165,11 @@ class _SettingsGroupScreenState extends State<SettingsGroupScreen> {
             setState(() {
               // Don't reset the teachers list or selected teacher unless necessary
               if (_teachers.isEmpty) {
-                _teachers = state.groups['teachers']?.map<Teacher>((teacherJson) {
-                      return Teacher.fromJson(teacherJson);
-                    }).toList() ??
-                    [];
+                _teachers =
+                    state.groups['teachers']?.map<Teacher>((teacherJson) {
+                          return Teacher.fromJson(teacherJson);
+                        }).toList() ??
+                        [];
                 _selectedTeacher = _teachers.firstWhere(
                   (teacher) => teacher.name == widget.teacherName,
                 );
@@ -230,6 +231,19 @@ class _SettingsGroupScreenState extends State<SettingsGroupScreen> {
                       ),
                     ),
                   ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return TimeTableAddingScreen(id: widget.groups['id']);
+                        },
+                      ),
+                    );
+                  },
+                  child: const Text("Add Time Table"),
+                ),
                 ElevatedButton(
                   onPressed: submit,
                   child: const Text("ADD STUDENT"),

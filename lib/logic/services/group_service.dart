@@ -10,21 +10,29 @@ class GroupService {
     int mainTeacherId,
     int assistantTeacherId,
   ) async {
-    final url = '$baseUrl/groups';
-    // ignore: unused_local_variable
-    final responce = await dio.post(
-      url,
-      data: {
-        'name': name,
-        'main_teacher_id': mainTeacherId,
-        'assistant_teacher_id': assistantTeacherId
-      },
-      options: Options(
-        headers: {
-          'Authorization': 'Bearer $accessToken',
+    try {
+      print(name);
+      print(mainTeacherId);
+      print(assistantTeacherId);
+      final url = '$baseUrl/groups';
+      // ignore: unused_local_variable
+      final responce = await dio.post(
+        url,
+        data: {
+          'name': name,
+          'main_teacher_id': mainTeacherId,
+          'assistant_teacher_id': assistantTeacherId,
+          'subject_id': 2,
         },
-      ),
-    );
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer $accessToken',
+          },
+        ),
+      );
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   Future<Map<String, dynamic>> getGroups(
@@ -63,8 +71,7 @@ class GroupService {
         throw Exception('Failed to add students: ${response.statusCode}');
       }
     } catch (e) {
-
-      rethrow; 
+      rethrow;
     }
   }
 }

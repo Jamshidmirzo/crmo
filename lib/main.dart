@@ -1,5 +1,7 @@
 import 'package:crmo/logic/blocs/auth/auth_bloc.dart';
 import 'package:crmo/logic/blocs/group/group_bloc.dart';
+import 'package:crmo/logic/blocs/room/room_bloc.dart';
+import 'package:crmo/logic/blocs/timetable/timetable_bloc.dart';
 import 'package:crmo/logic/blocs/user/user_bloc.dart';
 import 'package:crmo/logic/services/user_service.dart';
 import 'package:crmo/ui/screens/bottom_navigation_bar/bottom_nav_bar.dart';
@@ -27,6 +29,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => GroupBloc(),
         ),
+        BlocProvider(
+          create: (context) => RoomBloc(),
+        ),
+        BlocProvider(
+          create: (context) => TimetableBloc(),
+        ),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -35,6 +43,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
